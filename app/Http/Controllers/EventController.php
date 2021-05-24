@@ -121,11 +121,6 @@ class EventController extends Controller
      */
     public function destroy($id){
 
-        $users = User::all();
-        $usuarios = $users->where('id_event','=',$id);
-        foreach ($usuarios as $usuario){
-        $usuario->eventsAsParticipant()->detach($id);
-        }
 
         //deleta o dado atravez do id passado
         Event::findOrFail($id)->delete();

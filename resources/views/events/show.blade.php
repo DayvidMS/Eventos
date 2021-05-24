@@ -39,6 +39,7 @@
                 @else
                     <p class="already-joined-msg">Você já está participando do Evento</p>
                 @endif
+                @if($event->items)
                 <h3>O evento conta com:</h3>
                 <ul id="items-list">
                     @foreach($event->items as $item)
@@ -47,6 +48,9 @@
                             <span>{{$item}}</span></li>
                     @endforeach
                 </ul>
+                @else
+                    <p></p>
+                @endif
             </div>
             <div class="col-md-12" id="description-container">
                 <h3>Sobre o evento:</h3>
