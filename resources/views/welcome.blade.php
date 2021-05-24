@@ -3,7 +3,7 @@
 @section('title', 'HDC Events')
 
 @section('content')
-
+{{--{{dd($users)}}--}}
     <div id="search-container" class="col-md-12">
         <h1>Busque um evento</h1>
         <form action="/" method="GET" >

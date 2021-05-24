@@ -25,7 +25,7 @@ Route::get('/events/{id}', [EventController::class,'show']);
 //Chama a rota dashboard para retornar os dados dos eventos do usuario
 Route::get('/dashboard',[EventController::class, 'dashboard'])->middleware('auth');
 //Rota que chama a função para deletar o dado
-Route::delete('events/{id}',[EventController::class, 'destroy'])->middleware('auth');
+Route::delete('/events/{id}',[EventController::class, 'destroy'])->middleware('auth');
 //Rota que chama a página para edição de dados
 Route::get('events/edit/{id}',[EventController::class,'edit'])->middleware('auth');
 //recebe as mudanças do formulario e faz o update

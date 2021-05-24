@@ -24,9 +24,9 @@ class EventController extends Controller
         }else{
         $events = Event::all();
         }
+        $users = User::all();
 
-
-        return view('welcome',['events' => $events,'search' => $search]);
+        return view('welcome',['events' => $events,'search' => $search,'users' => $users]);
     }
 
     /**
@@ -120,6 +120,13 @@ class EventController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id){
+
+        $users = User::all();
+        $usuarios = $users->where('id_event','=',$id);
+        foreach ($usuarios as $usuario){
+        $usuario->eventsAsParticipant()->detach($id);
+        }
+
         //deleta o dado atravez do id passado
         Event::findOrFail($id)->delete();
 
@@ -139,6 +146,7 @@ class EventController extends Controller
         if ($user->id != $event->user_id){
             return redirect('/dashboard');
         }
+
         $itens = ['Cadeiras','Palco','Mesa','Open food','brindes'];
         return view('events.edit',['event' => $event, 'itens' => $itens]);
     }
